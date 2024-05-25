@@ -52,7 +52,7 @@ public class ModConfig {
 
         Controls controls = new Controls();
         static class Controls {
-            boolean switch_roll_and_yaw = false;
+            boolean switch_roll_and_yaw = true;
             boolean invert_pitch = false;
             boolean momentum_based_mouse = false;
             double momentum_mouse_deadzone = 0.2;
@@ -63,12 +63,12 @@ public class ModConfig {
 
         Hud hud = new Hud();
         static class Hud {
-            boolean show_horizon = false;
+            boolean show_horizon = true;
         }
 
         Banking banking = new Banking();
         static class Banking {
-            boolean enable_banking = true;
+            boolean enable_banking = false;
             double banking_strength = 20.0;
             boolean simulate_control_surface_efficacy = false;
         }
@@ -76,14 +76,14 @@ public class ModConfig {
         Thrust thrust = new Thrust();
         static class Thrust {
             boolean enable_thrust = false;
-            double max_thrust = 2.0;
+            double max_thrust = 10.0;
             double thrust_acceleration = 0.1;
-            boolean thrust_particles = true;
+            boolean thrust_particles = false;
         }
 
         Misc misc = new Misc();
         static class Misc {
-            boolean enable_easter_eggs = true;
+            boolean enable_easter_eggs = false;
         }
     }
 
@@ -93,12 +93,12 @@ public class ModConfig {
         Smoothing smoothing = new Smoothing();
         static class Smoothing {
             boolean smoothing_enabled = true;
-            double smoothing_pitch = 1.0;
-            double smoothing_yaw = 0.4;
-            double smoothing_roll = 1.0;
+            double smoothing_pitch = 0.0;
+            double smoothing_yaw = 0.0;
+            double smoothing_roll = 0.0;
         }
 
-        Sensitivity camera_smoothing = new Sensitivity(1.0, 2.5, 1.0);
+        Sensitivity camera_smoothing = new Sensitivity(0.0, 0.0, 0.0);
         Sensitivity desktop = new Sensitivity();
         Sensitivity controller = new Sensitivity();
     }
@@ -119,7 +119,7 @@ public class ModConfig {
 
     public boolean getSwitchRollAndYaw() {
         return general.controls.switch_roll_and_yaw;
-    } //= false;
+    } //= true;
 
     public boolean getMomentumBasedMouse() {
         return general.controls.momentum_based_mouse;
@@ -151,7 +151,7 @@ public class ModConfig {
 
     public boolean getEnableBanking() {
         return general.banking.enable_banking;
-    }// = true;
+    }// = false;
 
     public double getBankingStrength() {
         return general.banking.banking_strength;

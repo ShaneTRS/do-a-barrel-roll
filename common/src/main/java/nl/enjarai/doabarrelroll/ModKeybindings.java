@@ -18,7 +18,7 @@ public class ModKeybindings {
     public static final KeyBinding TOGGLE_ENABLED = new KeyBinding(
             "key.do_a_barrel_roll.toggle_enabled",
             InputUtil.Type.KEYSYM,
-            GLFW.GLFW_KEY_I,
+            GLFW.GLFW_KEY_LEFT_SHIFT,
             "category.do_a_barrel_roll.do_a_barrel_roll"
     );
     public static final KeyBinding TOGGLE_THRUST = new KeyBinding(
@@ -49,25 +49,25 @@ public class ModKeybindings {
     public static final KeyBinding YAW_LEFT = new KeyBinding(
             "key.do_a_barrel_roll.yaw_left",
             InputUtil.Type.KEYSYM,
-            GLFW.GLFW_KEY_A,
+            InputUtil.UNKNOWN_KEY.getCode(),
             "category.do_a_barrel_roll.do_a_barrel_roll.movement"
     );
     public static final KeyBinding YAW_RIGHT = new KeyBinding(
             "key.do_a_barrel_roll.yaw_right",
             InputUtil.Type.KEYSYM,
-            GLFW.GLFW_KEY_D,
+            InputUtil.UNKNOWN_KEY.getCode(),
             "category.do_a_barrel_roll.do_a_barrel_roll.movement"
     );
     public static final KeyBinding ROLL_LEFT = new KeyBinding(
             "key.do_a_barrel_roll.roll_left",
             InputUtil.Type.KEYSYM,
-            InputUtil.UNKNOWN_KEY.getCode(),
+            GLFW.GLFW_KEY_A,
             "category.do_a_barrel_roll.do_a_barrel_roll.movement"
     );
     public static final KeyBinding ROLL_RIGHT = new KeyBinding(
             "key.do_a_barrel_roll.roll_right",
             InputUtil.Type.KEYSYM,
-            InputUtil.UNKNOWN_KEY.getCode(),
+            GLFW.GLFW_KEY_D,
             "category.do_a_barrel_roll.do_a_barrel_roll.movement"
     );
     public static final KeyBinding THRUST_FORWARD = new KeyBinding(
@@ -79,7 +79,7 @@ public class ModKeybindings {
     public static final KeyBinding THRUST_BACKWARD = new KeyBinding(
             "key.do_a_barrel_roll.thrust_backward",
             InputUtil.Type.KEYSYM,
-            InputUtil.UNKNOWN_KEY.getCode(),
+            GLFW.GLFW_KEY_S,
             "category.do_a_barrel_roll.do_a_barrel_roll.movement"
     );
 
@@ -139,17 +139,17 @@ public class ModKeybindings {
         }
         while (TOGGLE_THRUST.wasPressed()) {
             if (Services.CLIENT_NET.getHandshakeClient().getConfig().map(LimitedModConfigServer::allowThrusting).orElse(false)) {
-                ModConfig.INSTANCE.setEnableThrust(!ModConfig.INSTANCE.getEnableThrust());
-                ModConfig.INSTANCE.save();
+            ModConfig.INSTANCE.setEnableThrust(!ModConfig.INSTANCE.getEnableThrust());
+            ModConfig.INSTANCE.save();
 
-                if (client.player != null) {
-                    client.player.sendMessage(
-                            Text.translatable(
-                                    "key.do_a_barrel_roll." +
-                                            (ModConfig.INSTANCE.getEnableThrust() ? "toggle_thrust.enable" : "toggle_thrust.disable")
-                            ),
-                            true
-                    );
+            if (client.player != null) {
+                client.player.sendMessage(
+                    Text.translatable(
+                        "key.do_a_barrel_roll." +
+                            (ModConfig.INSTANCE.getEnableThrust() ? "toggle_thrust.enable" : "toggle_thrust.disable")
+                    ),
+                    true
+                );
                 }
             } else {
                 if (client.player != null) {

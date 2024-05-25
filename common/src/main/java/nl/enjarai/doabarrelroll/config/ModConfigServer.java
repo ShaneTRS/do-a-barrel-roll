@@ -19,7 +19,7 @@ public record ModConfigServer(boolean allowThrusting,
                               int installedTimeout,
                               KineticDamage kineticDamage) implements SyncableConfig<ModConfigServer, LimitedModConfigServer>, LimitedModConfigServer, ValidatableConfig {
     public static final ModConfigServer DEFAULT = new ModConfigServer(
-            false, false, false, 40, KineticDamage.VANILLA);
+            true, false, false, 40, KineticDamage.VANILLA);
 
     public static final Codec<ModConfigServer> CODEC = RecordCodecBuilder.create(instance -> instance.group(
             Codec.BOOL.optionalFieldOf("allowThrusting", DEFAULT.allowThrusting()).forGetter(ModConfigServer::allowThrusting),

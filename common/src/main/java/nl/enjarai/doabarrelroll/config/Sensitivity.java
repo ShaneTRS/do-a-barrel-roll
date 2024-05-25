@@ -2,8 +2,8 @@ package nl.enjarai.doabarrelroll.config;
 
 public class Sensitivity {
     public double pitch = 1;
-    public double yaw = 0.4;
-    public double roll = 1;
+    public double yaw = 1;
+    public double roll = 0.25;
 
     public Sensitivity() {
     }
