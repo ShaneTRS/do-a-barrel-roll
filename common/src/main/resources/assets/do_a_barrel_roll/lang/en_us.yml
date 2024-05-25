@@ -27,6 +27,7 @@ config.do_a_barrel_roll:
     activation_behaviour:
       .: Activation Behaviour
       vanilla: Vanilla
+      inverted: Inverted
       triple_jump: Triple Jump
       hybrid: Hybrid
       hybrid_toggle: Hybrid Toggle
@@ -36,7 +37,9 @@ config.do_a_barrel_roll:
         
 
         vanilla: >
-          §lVanilla§r: Same as vanilla; jump once while off the ground.
+          §lVanilla§r: Only active when key is held
+        inverted: >
+          §lInverted§r: Disabled when key is held
         triple_jump: >
           §lTriple Jump§r: Requires you to jump twice while off the ground instead of once. 
           Can be helpful in preventing your elytra from activating while sprint jumping.

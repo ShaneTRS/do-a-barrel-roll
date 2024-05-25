@@ -62,11 +62,11 @@ public class DoABarrelRollClient {
     public static boolean isFallFlying() {
         if (!Services.CLIENT_NET.getHandshakeClient().getConfig().map(LimitedModConfigServer::forceEnabled).orElse(false)) {
             var hybrid = ModConfig.INSTANCE.getActivationBehaviour() == ActivationBehaviour.HYBRID ||
-                    ModConfig.INSTANCE.getActivationBehaviour() == ActivationBehaviour.HYBRID_TOGGLE;
+                        ModConfig.INSTANCE.getActivationBehaviour() == ActivationBehaviour.HYBRID_TOGGLE;
             if (hybrid && !MixinHooks.thirdJump) {
                 return false;
             }
-
+    
             if (!ModConfig.INSTANCE.getModEnabled()) {
                 return false;
             }
@@ -79,7 +79,11 @@ public class DoABarrelRollClient {
         if (ModConfig.INSTANCE.getDisableWhenSubmerged() && player.isSubmergedInWater()) {
             return false;
         }
-        return player.isFallFlying();
+        return player.isFallFlying() && switch (ModConfig.INSTANCE.getActivationBehaviour()) {
+            case VANILLA -> ModKeybindings.TOGGLE_ENABLED.isPressed();
+            case INVERTED -> !ModKeybindings.TOGGLE_ENABLED.isPressed();
+            default -> true;
+        };
     }
 
     public static boolean isConnectedToRealms() {

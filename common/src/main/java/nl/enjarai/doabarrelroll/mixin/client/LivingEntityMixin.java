@@ -58,6 +58,13 @@ public abstract class LivingEntityMixin extends Entity {
         double speedIncrease = Math.max(maxSpeed - velocity.length(), 0) / maxSpeed * throttleSign;
         double acceleration = ModConfig.INSTANCE.getThrustAcceleration() * speedIncrease;
 
+        if (!switch (ModConfig.INSTANCE.getActivationBehaviour()) {
+            case VANILLA -> ModKeybindings.TOGGLE_ENABLED.isPressed();
+            case INVERTED -> !ModKeybindings.TOGGLE_ENABLED.isPressed();
+            default -> true;
+        }) {
+            return original;
+        };
         return original.add(
                 rotation.x * acceleration,
                 rotation.y * acceleration,

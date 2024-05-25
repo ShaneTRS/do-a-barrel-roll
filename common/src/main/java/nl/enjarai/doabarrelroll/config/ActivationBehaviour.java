@@ -5,6 +5,7 @@ import net.minecraft.util.TranslatableOption;
 
 public enum ActivationBehaviour implements TranslatableOption {
     VANILLA,
+    INVERTED,
     TRIPLE_JUMP,
     HYBRID,
     HYBRID_TOGGLE;

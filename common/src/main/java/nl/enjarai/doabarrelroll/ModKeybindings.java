@@ -114,29 +114,6 @@ public class ModKeybindings {
     }
 
     public static void clientTick(MinecraftClient client) {
-        while (TOGGLE_ENABLED.wasPressed()) {
-            if (!Services.CLIENT_NET.getHandshakeClient().getConfig().map(LimitedModConfigServer::forceEnabled).orElse(false)) {
-                ModConfig.INSTANCE.setModEnabled(!ModConfig.INSTANCE.getModEnabled());
-                ModConfig.INSTANCE.save();
-
-                if (client.player != null) {
-                    client.player.sendMessage(
-                            Text.translatable(
-                                    "key.do_a_barrel_roll." +
-                                            (ModConfig.INSTANCE.getModEnabled() ? "toggle_enabled.enable" : "toggle_enabled.disable")
-                            ),
-                            true
-                    );
-                }
-            } else {
-                if (client.player != null) {
-                    client.player.sendMessage(
-                            Text.translatable("key.do_a_barrel_roll.toggle_enabled.disallowed"),
-                            true
-                    );
-                }
-            }
-        }
         while (TOGGLE_THRUST.wasPressed()) {
             if (Services.CLIENT_NET.getHandshakeClient().getConfig().map(LimitedModConfigServer::allowThrusting).orElse(false)) {
             ModConfig.INSTANCE.setEnableThrust(!ModConfig.INSTANCE.getEnableThrust());
