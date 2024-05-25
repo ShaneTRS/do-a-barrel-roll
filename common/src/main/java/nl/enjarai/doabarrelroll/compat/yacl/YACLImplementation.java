@@ -20,7 +20,6 @@ import nl.enjarai.doabarrelroll.ModKeybindings;
 import nl.enjarai.doabarrelroll.api.event.ClientEvents;
 import nl.enjarai.doabarrelroll.config.*;
 import nl.enjarai.doabarrelroll.math.ExpressionParser;
-import nl.enjarai.doabarrelroll.net.ServerConfigUpdateClient;
 import nl.enjarai.doabarrelroll.platform.Services;
 
 import java.net.URI;
@@ -38,8 +37,8 @@ public class YACLImplementation {
                 (player = MinecraftClient.getInstance().player) != null && player.hasPermissionLevel(2);
         var serverConfig = Services.CLIENT_NET.getHandshakeClient().getConfig();
 
-        var thrustingAllowed = new Dependable(serverConfig.map(LimitedModConfigServer::allowThrusting).orElse(!inWorld || onRealms));
-        var allowDisabled = new Dependable(!serverConfig.map(LimitedModConfigServer::forceEnabled).orElse(false));
+        var thrustingAllowed = new Dependable(true);
+        var allowDisabled = new Dependable(true);
 
         var builder = YetAnotherConfigLib.createBuilder()
                 .title(getText("title"))
@@ -278,8 +277,8 @@ public class YACLImplementation {
 
         Consumer<LimitedModConfigServer> configListener = config -> {
             // Update options that have dependent availability.
-            thrustingAllowed.set(config.allowThrusting());
-            allowDisabled.set(!config.forceEnabled());
+            thrustingAllowed.set(true);
+            allowDisabled.set(true);
         };
 
         return builder

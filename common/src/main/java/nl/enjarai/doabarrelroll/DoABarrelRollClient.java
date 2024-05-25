@@ -60,16 +60,13 @@ public class DoABarrelRollClient {
     }
 
     public static boolean isFallFlying() {
-        if (!Services.CLIENT_NET.getHandshakeClient().getConfig().map(LimitedModConfigServer::forceEnabled).orElse(false)) {
-            var hybrid = ModConfig.INSTANCE.getActivationBehaviour() == ActivationBehaviour.HYBRID ||
-                        ModConfig.INSTANCE.getActivationBehaviour() == ActivationBehaviour.HYBRID_TOGGLE;
-            if (hybrid && !MixinHooks.thirdJump) {
-                return false;
-            }
-    
-            if (!ModConfig.INSTANCE.getModEnabled()) {
-                return false;
-            }
+        var hybrid = ModConfig.INSTANCE.getActivationBehaviour() == ActivationBehaviour.HYBRID ||
+                    ModConfig.INSTANCE.getActivationBehaviour() == ActivationBehaviour.HYBRID_TOGGLE;
+        if (hybrid && !MixinHooks.thirdJump) {
+            return false;
+        }
+        if (!ModConfig.INSTANCE.getModEnabled()) {
+            return false;
         }
 
         var player = MinecraftClient.getInstance().player;
