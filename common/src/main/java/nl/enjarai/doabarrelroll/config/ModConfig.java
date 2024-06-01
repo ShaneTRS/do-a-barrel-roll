@@ -71,6 +71,8 @@ public class ModConfig {
             boolean enable_banking = false;
             double banking_strength = 20.0;
             boolean simulate_control_surface_efficacy = false;
+            boolean automatic_righting = false;
+            double righting_strength = 50.0;
         }
 
         Thrust thrust = new Thrust();
@@ -160,6 +162,14 @@ public class ModConfig {
     public boolean getSimulateControlSurfaceEfficacy() {
         return general.banking.simulate_control_surface_efficacy;
     }// = false;
+
+    public boolean getAutomaticRighting() {
+        return general.banking.automatic_righting;
+    }
+
+    public double getRightingStrength() {
+        return general.banking.righting_strength;
+    }
 
     public boolean getEnableThrust() {
         if (general.thrust.enable_thrust) {
@@ -311,6 +321,14 @@ public class ModConfig {
 
     public void setSimulateControlSurfaceEfficacy(boolean enabled) {
         general.banking.simulate_control_surface_efficacy = enabled;
+    }
+
+    public void setAutomaticRighting(boolean enabled) {
+        general.banking.automatic_righting = enabled;
+    }
+
+    public void setRightingStrength(double strength) {
+        general.banking.righting_strength = strength;
     }
 
     public void setEnableThrust(boolean enabled) {

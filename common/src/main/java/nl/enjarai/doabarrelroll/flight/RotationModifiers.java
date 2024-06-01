@@ -16,6 +16,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RotationModifiers {
+    public static final double ROLL_REORIENT_CUTOFF = Math.sqrt(10.0 / 3.0);
+
     public static RollContext.ConfiguresRotation buttonControls(double power) {
         return (rotationInstant, context) -> {
             var delta = power * context.getRenderDelta();
@@ -74,6 +76,20 @@ public class RotationModifiers {
         if (Double.isNaN(dY)) dY = 0;
 
         return rotationInstant.addAbsolute(dX * delta, dY * delta, currentRoll);
+    }
+
+    public static RotationInstant reorient(RotationInstant rotationInstant, RollContext context) {
+        var delta = context.getRenderDelta();
+        var currentRoll = context.getCurrentRotation().roll() * MagicNumbers.TORAD;
+        var strength = 10 * ModConfig.INSTANCE.getRightingStrength();
+
+        var cutoff = ROLL_REORIENT_CUTOFF;
+        double rollDelta = 0;
+        if (-cutoff < currentRoll && currentRoll < cutoff) {
+            rollDelta = -Math.pow(currentRoll, 3) / 3.0 + currentRoll; //0.1 * Math.pow(currentRoll, 5);
+        }
+
+        return rotationInstant.add(0, 0, -rollDelta * strength * delta);
     }
 
     public static RotationInstant manageThrottle(RotationInstant rotationInstant, RollContext context) {

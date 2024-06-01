@@ -73,6 +73,12 @@ config.do_a_barrel_roll:
     simulate_control_surface_efficacy.description: >
       Makes... an attempt to simulate the variable authority of different control surfaces based on your current angle of attack.
       This is experimental and subject to change in the future, but might improve your flight experience.
+    automatic_righting: Automatic Righting
+    automatic_righting.description: >
+      Applies an artificial roll input to reorient the camera to be right side up when it is rolled by 90 degrees or less in either direction.
+      Enabling this together with switching the roll and yaw axes will make flight more vanilla-like, while still allowing manual rolling and loop-de-loops.
+      You may also find this option helpful in reducing motion sickness.
+    righting_strength: Righting Strength
   thrust:
     .: Thrusting Options
     enable_thrust: Enable Thrusting

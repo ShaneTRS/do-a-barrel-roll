@@ -41,7 +41,8 @@ public class DoABarrelRollClient {
                         PITCH_SMOOTHER, YAW_SMOOTHER, ROLL_SMOOTHER,
                         ModConfig.INSTANCE.getSmoothing()
                 ))
-                .useModifier(RotationModifiers::banking, ModConfig.INSTANCE::getEnableBanking),
+                .useModifier(RotationModifiers::banking, ModConfig.INSTANCE::getEnableBanking)
+                .useModifier(RotationModifiers::reorient, ModConfig.INSTANCE::getAutomaticRighting),
                 1000, FALL_FLYING_GROUP);
 
         ClientEvents.SERVER_CONFIG_UPDATE.register(ModConfig.INSTANCE::notifyPlayerOfServerConfig);
