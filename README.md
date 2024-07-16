@@ -85,12 +85,12 @@ as it lets users accelerate without using fireworks.
 If you want to allow players to use this feature on your server you can, 
 depending on your server platform, use one of the methods below.
 These configurations will be respected by any clients using version 2.4.0 or later of the mod.
-The legacy Forge versions do not support thrusting and other server-side featuers, 
+The pre-1.20 Forge versions do not support thrusting and other server-side featuers, 
 so they will not be affected by any of these options.
 
-#### For Fabric servers
+#### For Fabric and Forge servers
 
-Fabric server owners can install the mod on their server and, while in the world, use the "Server" tab on the config screen to configure it. (recommended)
+Fabric or Forge server owners can install the mod on their server and, while in the world, use the "Server" tab on the config screen to configure it. (recommended)
 - This tab is only available to level 3 server operators and players with the `do_a_barrel_roll.configure` permission.
 - You can also set values manually in `config/do_a_barrel_roll-server.json`
   to configure the mod without a client.

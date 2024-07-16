@@ -10,7 +10,7 @@ import org.joml.Vector2d;
 
 public class HorizonLineWidget extends RenderHelper {
     public static void render(MatrixStack matrices, int scaledWidth, int scaledHeight, double roll, double pitch) {
-        int centerX = scaledWidth / 2;
+        int centerX = scaledWidth / 2 - 1;
         int centerY = scaledHeight / 2 - 1;
         roll *= -MagicNumbers.TORAD;
 

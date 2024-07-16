@@ -2,6 +2,7 @@ package nl.enjarai.doabarrelroll;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
+import net.minecraft.client.render.RenderTickCounter;
 import nl.enjarai.doabarrelroll.api.RollEntity;
 import nl.enjarai.doabarrelroll.api.RollMouse;
 import nl.enjarai.doabarrelroll.config.ModConfig;
@@ -24,8 +25,9 @@ public class EventCallbacksClient {
         StarFoxUtil.clientTick(client);
     }
 
-    public static void onRenderCrosshair(DrawContext context, float tickDelta, int scaledWidth, int scaledHeight) {
+    public static void onRenderCrosshair(DrawContext context, RenderTickCounter tickCounter, int scaledWidth, int scaledHeight) {
         if (!DoABarrelRollClient.isFallFlying()) return;
+        var tickDelta = tickCounter.getTickDelta(true);
 
         var matrices = context.getMatrices();
         var entity = MinecraftClient.getInstance().getCameraEntity();

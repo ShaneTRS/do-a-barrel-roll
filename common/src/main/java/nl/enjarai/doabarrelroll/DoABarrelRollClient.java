@@ -1,7 +1,7 @@
 package nl.enjarai.doabarrelroll;
 
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.util.SmoothUtil;
+import net.minecraft.util.math.Smoother;
 import nl.enjarai.doabarrelroll.api.event.ClientEvents;
 import nl.enjarai.doabarrelroll.api.event.RollEvents;
 import nl.enjarai.doabarrelroll.api.event.RollGroup;
@@ -14,9 +14,9 @@ import nl.enjarai.doabarrelroll.util.MixinHooks;
 import nl.enjarai.doabarrelroll.util.StarFoxUtil;
 
 public class DoABarrelRollClient {
-    public static final SmoothUtil PITCH_SMOOTHER = new SmoothUtil();
-    public static final SmoothUtil YAW_SMOOTHER = new SmoothUtil();
-    public static final SmoothUtil ROLL_SMOOTHER = new SmoothUtil();
+    public static final Smoother PITCH_SMOOTHER = new Smoother();
+    public static final Smoother YAW_SMOOTHER = new Smoother();
+    public static final Smoother ROLL_SMOOTHER = new Smoother();
     public static final RollGroup FALL_FLYING_GROUP = RollGroup.of(DoABarrelRoll.id("fall_flying"));
     public static double throttle = 0;
 

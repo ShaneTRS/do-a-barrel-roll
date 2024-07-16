@@ -13,13 +13,13 @@ public class RenderHelper {
         return (x, y) -> {
             int color = 0xffffffff;
             var matrix = matrices.peek().getPositionMatrix();
-            var bufferBuilder = Tessellator.getInstance().getBuffer();
+            var bufferBuilder = Tessellator.getInstance().begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_COLOR);
 
-            bufferBuilder.begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_COLOR);
-            bufferBuilder.vertex(matrix, (float) x, (float) y + 1, 0.0F).color(color).next();
-            bufferBuilder.vertex(matrix, (float) x + 1, (float) y + 1, 0.0F).color(color).next();
-            bufferBuilder.vertex(matrix, (float) x + 1, (float) y, 0.0F).color(color).next();
-            bufferBuilder.vertex(matrix, (float) x, (float) y, 0.0F).color(color).next();
+            //TODO: Figure out if I can just delete the nexts here?
+            bufferBuilder.vertex(matrix, (float) x, (float) y + 1, 0.0F).color(color);
+            bufferBuilder.vertex(matrix, (float) x + 1, (float) y + 1, 0.0F).color(color);
+            bufferBuilder.vertex(matrix, (float) x + 1, (float) y, 0.0F).color(color);
+            bufferBuilder.vertex(matrix, (float) x, (float) y, 0.0F).color(color);
             BufferRenderer.drawWithGlobalProgram(bufferBuilder.end());
         };
     }

@@ -2,9 +2,11 @@ package nl.enjarai.doabarrelroll.mixin.client;
 
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.hud.InGameHud;
+import net.minecraft.client.render.RenderTickCounter;
 import nl.enjarai.doabarrelroll.EventCallbacksClient;
 import nl.enjarai.doabarrelroll.util.StarFoxUtil;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -17,9 +19,9 @@ public abstract class InGameHudMixin {
                     value = "HEAD"
             )
     )
-    private void doABarrelRoll$captureTickDelta(DrawContext context, float tickDelta, CallbackInfo ci) {
+    private void doABarrelRoll$captureTickDelta(DrawContext context, RenderTickCounter tickCounter, CallbackInfo ci) {
         context.getMatrices().push();
-        EventCallbacksClient.onRenderCrosshair(context, tickDelta, context.getScaledWindowWidth(), context.getScaledWindowHeight());
+        EventCallbacksClient.onRenderCrosshair(context, tickCounter, context.getScaledWindowWidth(), context.getScaledWindowHeight());
     }
 
     @Inject(
@@ -28,7 +30,7 @@ public abstract class InGameHudMixin {
                     value = "RETURN"
             )
     )
-    private void doABarrelRoll$renderCrosshairReturn(DrawContext context, float tickDelta, CallbackInfo ci) {
+    private void doABarrelRoll$renderCrosshairReturn(DrawContext context, RenderTickCounter tickCounter, CallbackInfo ci) {
         context.getMatrices().pop();
     }
 
@@ -36,11 +38,10 @@ public abstract class InGameHudMixin {
             method = "render",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/client/gui/LayeredDrawer;render(Lnet/minecraft/client/gui/DrawContext;F)V",
-                    ordinal = 0
+                    target = "Lnet/minecraft/client/gui/LayeredDrawer;render(Lnet/minecraft/client/gui/DrawContext;Lnet/minecraft/client/render/RenderTickCounter;)V"
             )
     )
-    private void doABarrelRoll$renderPeppy(DrawContext context, float tickDelta, CallbackInfo ci) {
-        StarFoxUtil.renderPeppy(context, tickDelta, context.getScaledWindowWidth(), context.getScaledWindowHeight());
+    private void doABarrelRoll$renderPeppy(DrawContext context, RenderTickCounter tickCounter, CallbackInfo ci) {
+        StarFoxUtil.renderPeppy(context, tickCounter.getTickDelta(false), context.getScaledWindowWidth(), context.getScaledWindowHeight());
     }
 }

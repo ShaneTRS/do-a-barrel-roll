@@ -21,7 +21,6 @@
     "client.key.KeyBindingMixin",
     "client.roll.CameraMixin",
     "client.roll.DebugHudMixin",
-    "client.roll.GameRendererMixin",
     "client.roll.MouseMixin",
     "client.roll.PlayerEntityRendererMixin",
     "client.roll.entity.ClientPlayerEntityMixin"

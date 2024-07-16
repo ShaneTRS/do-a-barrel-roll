@@ -1,1 +1,1 @@
-- Added an automatic righting option in the config.
+- Added support for 1.21.

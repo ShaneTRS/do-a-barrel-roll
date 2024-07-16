@@ -17,7 +17,7 @@ public class DoABarrelRoll {
     public static final Identifier ROLL_CHANNEL = id("player_roll");
 
     public static Identifier id(String path) {
-        return new Identifier(MODID, path);
+        return Identifier.of(MODID, path);
     }
 
     public static void init() {

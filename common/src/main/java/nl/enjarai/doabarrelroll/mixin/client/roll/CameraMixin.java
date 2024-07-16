@@ -78,9 +78,9 @@ public abstract class CameraMixin implements RollCamera {
     )
     private boolean doABarrelRoll$addRoll1(Camera thiz, float yaw, float pitch, @Share("tickDelta") LocalFloatRef tickDelta) {
         if (isRolling) {
-            tempRoll.set(((RollEntity) focusedEntity).doABarrelRoll$getRoll(tickDelta.get()));
+            tempRoll.set(-((RollEntity) focusedEntity).doABarrelRoll$getRoll(tickDelta.get()));
         } else {
-            tempRoll.set(MathHelper.lerp(tickDelta.get(), lastRollBack, rollBack));
+            tempRoll.set(-MathHelper.lerp(tickDelta.get(), lastRollBack, rollBack));
         }
         return true;
     }
